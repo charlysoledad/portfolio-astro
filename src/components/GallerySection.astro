@@ -1,0 +1,37 @@
+---
+import { gallerySection } from "../assets/gallery/gallery";
+---
+
+<section id="gall" class="w-full relative isolate group overflow-hidden">
+  <div
+    class="w-full h-full bg-black/[0.6] content-center absolute group-hover:-translate-y-full transition duration-[1500ms]"
+  >
+    <h1
+      class="text-[#ffffff] tracking-wider font-bold text-6xl uppercase
+       text-center
+      transition duration-[700ms] group-hover:-translate-y-full"
+    >
+      Gallery
+    </h1>
+  </div>
+  <div
+    class="-z-10 w-full grid grid-flow-dense lg:grid-rows-3 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 items-center"
+  >
+    {
+      gallerySection.map((photo, index) => (
+        <a
+          href={`/gallery/photo/${photo.id}`}
+          class="max-h-[180px] h-full w-full flex items-center justify-center overflow-clip transition-all duration-1000"
+        >
+          <figure class=" w-full hover:m-3 ">
+            <img
+              src={photo.url}
+              alt={photo.alt}
+              class=" hover:scale-150 transition-all duration-500"
+            />
+          </figure>
+        </a>
+      ))
+    }
+  </div>
+</section>

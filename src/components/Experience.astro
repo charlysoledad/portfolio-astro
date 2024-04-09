@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  site: string;
+  time: string;
+  description: string;
+  projects: any[];
+  tasks: string[];
+}
+
+const { title, site, time, description, projects, tasks = [] } = Astro.props;
+---
+
+<li class="">
+  <div
+    class="relative mx-12 pb-12 before:absolute before:left-[-32px] before:block before:h-full before:border-l-[2.5px] before:border-black/20 dark:before:border-[#769EAD] before:content-['']"
+  >
+    <div class="relative">
+      <div
+        class="relative lg:block md:block sm:sticky lg:top-[64px] md:top-[64px] sm:top-[64px] sm:bg-[#080D16]"
+      >
+        <span
+          class="text-[#769EAD] bg-[#080D16] -left-[44px] absolute content-center rotate-90"
+        >
+          <img src="/assets/triangle-timeline.svg" alt="" class="w-6 -left-4" />
+        </span>
+        <time
+          class="p-0 m-0 text-sm bg-[#769EAD] w-fit pl-2 pr-3 py-1 text-white"
+          >{time}</time
+        >
+        <h3 class="font-semibold text-xl text-gray-600 pt-2 dark:text-white">
+          {site}
+        </h3>
+        <h4 class="text-base font-bold py-1 text-white tracking-wider">
+          {title}
+        </h4>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300">
+        {description}
+      </p>
+      {
+        projects &&
+          projects.map((project) => (
+            <div class="text-white">
+              <p class="font-semibold">{project.title}</p>
+              <p class="pl-3">{project.description}</p>
+              {project.tasks && (
+                <ol class="pl-3">
+                  {project.tasks.map((task: unknown) => (
+                    <li>{task}</li>
+                  ))}
+                </ol>
+              )}
+            </div>
+          ))
+      }
+      <ol class="">
+        {
+          tasks &&
+            tasks.map((task) => (
+              <li class=" ">
+                <p class="text-white"> {task} </p>
+              </li>
+            ))
+        }
+      </ol>
+    </div>
+  </div>
+</li>

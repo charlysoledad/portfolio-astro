@@ -1,0 +1,105 @@
+---
+import ProjectCard from "../../components/ProjectCard.astro";
+import Container from "../../layouts/Container.astro";
+import Content from "../../layouts/Content.astro";
+
+import { projects } from "../../data";
+
+const username = "charlysoledad";
+const password = "2804$0l3Ju4n.";
+const token = process.env.TOKEN;
+const headers = {
+  Authorization: `token ${token}`,
+};
+
+const repositories = await fetch(
+  "https://api.github.com/users/charlysoledad/repos",
+  {
+    headers: headers,
+  },
+).then(async (response) => response.json());
+// .then(async (data) => {
+//   const processed = await data.map(
+//     async (value: { languages_url: string | URL | Request }) => {
+//       const languages = await fetch(value.languages_url, {
+//         headers: headers,
+//       })
+//         .then(async (resp) => await resp.json())
+//         .then((val) => Object.keys(val));
+
+//       return { ...value, languages };
+//     },
+//   );
+//   return processed;
+// });
+
+console.log(repositories);
+---
+
+<Container title="Projects" navbarFixed={true}>
+  <main class="w-full">
+    <Content>
+      <h1 class="text-3xl text-white text-center mb-4">Projects</h1>
+      <div class="grid lg:grid-cols-2 gap-y-8 justify-center">
+        {
+          projects.map((project) => (
+            <ProjectCard
+              image={`/src/assets/projects/${project.image}`}
+              title={project.name}
+              description={project.description}
+            />
+          ))
+        }
+      </div>
+    </Content>
+    <Content>
+      <h1 class="text-3xl text-white text-center mb-4">Repositories</h1>
+      <div class="grid lg:grid-cols-4 gap-y-8 gap-x-4 justify-center">
+        {
+          repositories.map(
+            async (repo: {
+              languages_url: string | URL | Request;
+              html_url: string | URL | null | undefined;
+              name: unknown;
+              owner: { avatar_url: string | null | undefined };
+              description: unknown;
+            }) => {
+              const languages = await fetch(repo.languages_url, {
+                headers: headers,
+              })
+                .then((data) => data.json())
+                .then((langs) => Object.keys(langs));
+
+              return (
+                <a
+                  href={repo.html_url}
+                  target="_blank"
+                  class="block max-w-sm p-6 rounded-lg shadow border border-gray-700 md:flex-row md:max-w-xl hover:bg-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 bg-gray-800"
+                >
+                  <div class="flex flex-row justify-between">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
+                      {repo.name}
+                    </h5>
+                    <img
+                      class="w-6 h-6 rounded-full"
+                      src={repo.owner?.avatar_url}
+                      alt="Rounded avatar"
+                    />
+                  </div>
+                  <h6 class="text-[12px] text-gray-400 dark:text-gray-400 flex gap-x-2 gap-y-2 w-full flex-wrap">
+                    {languages.map((language) => (
+                      <span>{language}</span>
+                    ))}
+                  </h6>
+                  <p class="text-gray-100 dark:text-gray-100">
+                    {repo.description}
+                  </p>
+                </a>
+              );
+            },
+          )
+        }
+      </div>
+    </Content>
+  </main>
+</Container>

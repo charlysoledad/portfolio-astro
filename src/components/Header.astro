@@ -1,0 +1,37 @@
+---
+import Navigation from "./Navigation.astro";
+
+interface Props {
+  fixed: boolean;
+}
+
+const { fixed = false } = Astro.props;
+---
+
+<header id="navbar" class="w-full flex-initial mx-auto z-10 fixed">
+  <Navigation />
+  <nav-state data-mode={fixed}></nav-state>
+</header>
+
+<script is:inline define:vars={{ fixed }}>
+  document.addEventListener("astro:page-load", (e) => {
+    window.onscroll = function () {
+      myFunction();
+    };
+
+    var navbar = document.getElementById("navbar");
+    var sticky = window.screen.height;
+    function myFunction() {
+      if (fixed) navbar.classList.add("bg-[#080D16]");
+      else {
+        if (window.scrollY >= sticky + 1) {
+          // document.getElementById("hero").classList.add("mt-[64px]");
+          navbar.classList.add("bg-[#080D16]");
+        } else {
+          // document.getElementById("hero").classList.add("-mt-[64px]");
+          navbar.classList.remove("bg-[#080D16]");
+        }
+      }
+    }
+  });
+</script>

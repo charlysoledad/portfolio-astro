@@ -1,0 +1,76 @@
+---
+import "../../../css/transitions.css";
+import Container from "../../../layouts/Container.astro";
+import { gallerySection } from "../../../assets/gallery/gallery";
+import Content from "../../../layouts/Content.astro";
+import { Icon } from "astro-icon/components";
+
+export const getStaticPaths = () => {
+  return gallerySection.map((photo) => ({ params: { id: photo.id } }));
+};
+
+export const prerender = true;
+
+const { id } = Astro.params;
+
+const photo = gallerySection.find((photo) => photo.id == id);
+const photoIndex = gallerySection.findIndex((photo) => photo.id == id);
+const photoNumber = photo?.id.toString().padStart(2, "0");
+
+const prevPhoto = gallerySection[photoIndex - 1];
+const nextPhoto = gallerySection[photoIndex + 1];
+---
+
+<Container title="Gallery">
+  <main class="relative mx-auto w-full h-full">
+    <Content>
+      <div class="flex flex-col gap-y-8 items-center justify-center">
+        <img
+          src={photo?.url}
+          alt={photo?.alt}
+          class="max-w-[920px] max-h-[540px]"
+          transition:name={`photo-${photo?.id}`}
+        />
+        <div class="flex flex-row gap-x-3 items-center justify-center">
+          {
+            prevPhoto && (
+              <a
+                href={`/gallery/photo/${prevPhoto.id}`}
+                class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center"
+              >
+                <img
+                  class="place-self-center hover:scale-150 transition-all duration-500"
+                  src={prevPhoto.url}
+                  alt={prevPhoto.alt}
+                  loading={photoIndex && photoIndex > 8 ? "lazy" : "eager"}
+                  fetchpriority={
+                    photoIndex && photoIndex <= 4 ? "high" : "auto"
+                  }
+                />
+              </a>
+            )
+          }
+          {
+            nextPhoto && (
+              <a
+                href={`/gallery/photo/${nextPhoto.id}`}
+                class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center"
+              >
+                <img
+                  class="place-self-center hover:scale-150 transition-all duration-500"
+                  src={nextPhoto.url}
+                  alt={nextPhoto.alt}
+                  loading={photoIndex && photoIndex > 8 ? "lazy" : "eager"}
+                  fetchpriority={
+                    photoIndex && photoIndex <= 4 ? "high" : "auto"
+                  }
+                />
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </Content>
+  </main>
+  <script src="../../../scripts/transitions.ts"></script>
+</Container>

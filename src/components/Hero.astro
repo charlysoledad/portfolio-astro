@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+import Content from "../layouts/Content.astro";
+---
+
+<section
+  id="hero"
+  class="h-full min-h-screen relative w-full mx-auto pt-72 pb-96 isolate transition-all duration-500"
+>
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-7xl uppercase font-bold text-white tracking-widest">
+      Hello
+    </h1>
+    <p class="text-white">------------- welcome to myself.</p>
+  </div>
+  <div class="w-full absolute bottom-0 h-fit">
+    <img
+      src="/assets/pattern-triangle.svg"
+      alt="background"
+      class="right-auto left-auto absolute bottom-0 w-full z-0"
+    />
+
+    <!-- <img
+        src="/assets/pattern-triangle.svg"
+        alt="background"
+        class="right-auto left-auto transform -scale-x-100 absolute bottom-0 w-full opacity-80"
+        /> -->
+  </div>
+  <div class="w-full flex justify-center items-center absolute bottom-0 pb-8">
+    <a
+      href="#about"
+      class="text-5xl text-white/[.5] dark:text-white/[.5] hover:text-white hover:dark:text-white"
+    >
+      <Icon name="solar:alt-arrow-down-broken" />
+    </a>
+  </div>
+</section>
+
+<style>
+  h1,
+  p {
+    line-height: 1;
+    text-shadow: 3px 1px 3px rgba(0, 0, 0, 0.486);
+  }
+  section {
+    background: rgb(83, 105, 118);
+    background: linear-gradient(
+      90deg,
+      rgba(83, 105, 118, 1) 0%,
+      rgba(41, 46, 73, 1) 100%
+    );
+  }
+</style>

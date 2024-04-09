@@ -1,0 +1,105 @@
+---
+import { Icon } from "astro-icon/components";
+import GallerySection from "../components/GallerySection.astro";
+import Hero from "../components/Hero.astro";
+import Container from "../layouts/Container.astro";
+import Experience from "../components/Experience.astro";
+import Timeline from "../components/Timeline.astro";
+
+import { curriculum, skills } from "../data";
+import Content from "../layouts/Content.astro";
+---
+
+<Container title="Home" navbarFixed={false}>
+	<main class="relative min-h-[920px]: mx-auto w-full h-full">
+		<Hero />
+		<Content id="about" class="">
+			<h1
+				class="text-[#769EAD] text-3xl text-center border-b-[1px] border-b-[#769EAD] pb-2"
+			>
+				AQUI VA EL ABOUT
+			</h1>
+			<p class="text-white">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
+				assumenda ea et doloremque nulla dolorum molestias! Porro sapiente iure
+				perferendis quibusdam, explicabo deleniti cumque obcaecati incidunt ut
+				quasi minus modi?
+			</p>
+		</Content>
+		<Content class="bg-[#080D16] w-full text-center">
+			<div class="content max-w-7xl mx-auto w-full">
+				<h2
+					class="text-4xl text-center uppercase text-[#769EAD] border-b-[1px] border-b-[#769EAD] pb-2"
+				>
+					Skills
+				</h2>
+				<div
+					class="icons py-8 grid grid-flow-row lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 lg:justify-between sm:justify-normal justify-items-center gap-y-10 w-full"
+				>
+					{
+						skills.map((skill) => (
+							<a href={skill.site} target="_blank">
+								<Icon name={skill.icon} class="text-4xl text-white" />
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</Content>
+		<GallerySection />
+		<Content class="flex w-full bg-[#080D16]">
+			<div class="max-w-7xl mx-auto lg:flex md:flex sm:block">
+				<Timeline title="Work Experience">
+					<svg
+						slot="icon"
+						class="size-8 text-[#769EAD]"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						stroke-width="2"
+						stroke="currentColor"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+							d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
+						></path><path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"
+						></path><path d="M12 12l0 .01"></path><path
+							d="M3 13a20 20 0 0 0 18 0"></path></svg
+					>
+					{
+						curriculum.experience.map((work) => (
+							<Experience
+								title={work.occupation}
+								site={work.site}
+								time={work.time}
+								description={work.description}
+								projects={work.projects}
+								tasks={work.tasks}
+							/>
+						))
+					}
+				</Timeline>
+				<Timeline title="Scolarship">
+					<Icon
+						slot="icon"
+						name="mingcute:school-line"
+						class="text-[#769EAD]"
+					/>
+					{
+						curriculum.education.map((school) => (
+							<Experience
+								title={school.career}
+								site={school.name}
+								time={school.gradYear}
+								description=""
+								projects={school.projects}
+								tasks={[]}
+							/>
+						))
+					}
+				</Timeline>
+			</div>
+		</Content>
+	</main>
+</Container>

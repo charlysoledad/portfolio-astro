@@ -1,68 +1,91 @@
 ---
 import "../../../css/transitions.css";
 import Container from "../../../layouts/Container.astro";
-import { gallerySection } from "../../../assets/gallery/gallery";
 import Content from "../../../layouts/Content.astro";
-import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 
-export const getStaticPaths = () => {
-  return gallerySection.map((photo) => ({ params: { id: photo.id } }));
+export const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/gallery/*.{jpeg,jpg,png,gif}",
+);
+
+const imgKeys = Object.keys(images);
+const imgsIds = imgKeys.map((key) =>
+  key.replace("/src/assets/gallery/", "").replace(".jpg", ""),
+);
+
+export const getStaticPaths = async () => {
+  return imgsIds.map((id) => ({ params: { id: id } }));
 };
-
-export const prerender = true;
 
 const { id } = Astro.params;
 
-const photo = gallerySection.find((photo) => photo.id == id);
-const photoIndex = gallerySection.findIndex((photo) => photo.id == id);
-const photoNumber = photo?.id.toString().padStart(2, "0");
+const path = `/src/assets/gallery/${id}.jpg`;
+if (!images[path]) throw new Error("No images loaded");
 
-const prevPhoto = gallerySection[photoIndex - 1];
-const nextPhoto = gallerySection[photoIndex + 1];
+// const photo = gallerySection.find((photo) => photo.id == id);
+// const photoIndex = gallerySection.findIndex((photo) => photo.id == id);
+// const photoNumber = photo?.id.toString().padStart(2, "0");
+
+const prevPhoto = `/src/assets/gallery/${parseInt(id) - 1}.jpg`;
+// if (!images[prevPhoto]) throw new Error("No prev loaded");
+const nextPhoto = `/src/assets/gallery/${parseInt(id) + 1}.jpg`;
+// if (!images[nextPhoto]) throw new Error("No next loaded");
 ---
 
-<Container title="Gallery">
+<Container title="Gallery" navbarFixed={true}>
   <main class="relative mx-auto w-full h-full">
     <Content>
       <div class="flex flex-col gap-y-8 items-center justify-center">
-        <img
-          src={photo?.url}
-          alt={photo?.alt}
-          class="max-w-[920px] max-h-[540px]"
-          transition:name={`photo-${photo?.id}`}
+        <Image
+          decoding="async"
+          src={images[path]()}
+          alt=""
+          class="max-w-[920px] max-h-[540px] w-3/5"
+          transition:name={`photo-${id}`}
         />
+
+        <!-- <img
+          decoding="async"
+          src={import(images[imagePath])}
+          alt={photo?.alt}
+          
+        /> -->
         <div class="flex flex-row gap-x-3 items-center justify-center">
           {
-            prevPhoto && (
+            images[prevPhoto] && (
               <a
-                href={`/gallery/photo/${prevPhoto.id}`}
+                href={`/gallery/photo/${parseInt(id) - 1}`}
                 class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center"
               >
-                <img
+                <Image
                   class="place-self-center hover:scale-150 transition-all duration-500"
-                  src={prevPhoto.url}
-                  alt={prevPhoto.alt}
-                  loading={photoIndex && photoIndex > 8 ? "lazy" : "eager"}
+                  src={images[prevPhoto]()}
+                  alt=""
+                  loading={
+                    parseInt(id) - 1 && parseInt(id) - 1 > 8 ? "lazy" : "eager"
+                  }
                   fetchpriority={
-                    photoIndex && photoIndex <= 4 ? "high" : "auto"
+                    parseInt(id) - 1 && parseInt(id) - 1 <= 4 ? "high" : "auto"
                   }
                 />
               </a>
             )
           }
           {
-            nextPhoto && (
+            images[nextPhoto] && (
               <a
-                href={`/gallery/photo/${nextPhoto.id}`}
+                href={`/gallery/photo/${parseInt(id) + 1}`}
                 class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center"
               >
-                <img
+                <Image
                   class="place-self-center hover:scale-150 transition-all duration-500"
-                  src={nextPhoto.url}
-                  alt={nextPhoto.alt}
-                  loading={photoIndex && photoIndex > 8 ? "lazy" : "eager"}
+                  src={images[nextPhoto]()}
+                  alt={""}
+                  loading={
+                    parseInt(id) + 1 && parseInt(id) + 1 > 8 ? "lazy" : "eager"
+                  }
                   fetchpriority={
-                    photoIndex && photoIndex <= 4 ? "high" : "auto"
+                    parseInt(id) + 1 && parseInt(id) + 1 <= 4 ? "high" : "auto"
                   }
                 />
               </a>

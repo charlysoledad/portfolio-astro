@@ -6,7 +6,17 @@ const images = Object.values(
     import: "default",
   }),
 );
+
 if (!images) throw new Error("No images loaded");
+const valuedImages = images.map((img) => {
+  const _id = img.replace("/src/assets/gallery/", "");
+  const id = _id.replace(".jpg", "");
+
+  return {
+    src: img,
+    route: `/gallery/photo/${id}`,
+  };
+});
 ---
 
 <section id="gall" class="w-full relative isolate group overflow-hidden">
@@ -25,17 +35,17 @@ if (!images) throw new Error("No images loaded");
     class="-z-10 w-full grid grid-flow-dense lg:grid-rows-3 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 items-center"
   >
     {
-      images.map((photo, index) => {
+      valuedImages.map((photo, index) => {
         return (
           <a
-            href={`/gallery/photo/${index}`}
+            href={photo.route}
             class="max-h-[180px] h-full w-full flex items-center justify-center overflow-clip transition-all duration-1000"
           >
             <figure class=" w-full hover:m-3 ">
               <img
                 decoding="async"
-                src={photo}
-                alt={photo}
+                src={photo.src}
+                alt={photo.route}
                 class=" hover:scale-150 transition-all duration-500"
               />
             </figure>

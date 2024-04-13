@@ -9,5 +9,9 @@ export default defineConfig({
   output: 'server',
   integrations: [tailwind(), icon()],
   adapter: netlify(),
-  
+  image: {
+    domains: ["astro.build"],
+    remotePatterns: [{ protocol: "https" }],
+  },
+
 });

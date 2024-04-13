@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@gallery": [
-        "./src/assets/gallery/*",
+        "public/assets/gallery/*",
       ]
     }
   }

@@ -8,11 +8,14 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   output: 'server',
   integrations: [tailwind(), icon()],
-  adapter: vercel(),
-  image: {
-    domains: ["astro.build"],
-    remotePatterns: [{
-      protocol: "https"
-    }]
-  }
+  adapter: vercel({
+    imageService: true,
+    devImageService: 'squoosh',
+  }),
+  // image: {
+  //   domains: ["astro.build"],
+  //   remotePatterns: [{
+  //     protocol: "https"
+  //   }]
+  // }
 });

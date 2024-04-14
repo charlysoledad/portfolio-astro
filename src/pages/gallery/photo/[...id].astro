@@ -2,7 +2,7 @@
 import "../../../css/transitions.css";
 import Container from "../../../layouts/Container.astro";
 import Content from "../../../layouts/Content.astro";
-import { gallerySection } from "src/assets/gallery/gallery";
+import { gallerySection } from "src/consts/gallery";
 
 export const getStaticPaths = async () => {
   const imgKeys = gallerySection.map((photo) => photo.id);
@@ -86,3 +86,4 @@ export const prerender = true;
   </main>
   <script src="../../../scripts/transitions.ts"></script>
 </Container>
+src/consts/gallery src/assets/gallery/gallery

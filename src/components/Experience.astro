@@ -11,9 +11,9 @@ interface Props {
 const { title, site, time, description, projects, tasks = [] } = Astro.props;
 ---
 
-<li class="">
+<li>
   <div
-    class="relative mx-12 pb-12 before:absolute before:left-[-32px] before:block before:h-full before:border-l-[2.5px] before:border-black/20 dark:before:border-[#769EAD] before:content-['']"
+    class="relative mx-12 pb-12 before:absolute before:left-[-32px] before:block before:h-full before:border-l-[2.5px] before:border-[#769EAD] before:content-['']"
   >
     <div class="relative">
       <div
@@ -28,14 +28,14 @@ const { title, site, time, description, projects, tasks = [] } = Astro.props;
           class="p-0 m-0 text-sm bg-[#769EAD] w-fit pl-2 pr-3 py-1 text-white"
           >{time}</time
         >
-        <h3 class="font-semibold text-xl text-gray-600 pt-2 dark:text-white">
+        <h3 class="font-semibold text-xl text-white pt-2">
           {site}
         </h3>
         <h4 class="text-base font-bold py-1 text-white tracking-wider">
           {title}
         </h4>
       </div>
-      <p class="text-gray-600 dark:text-gray-300">
+      <p class="text-white">
         {description}
       </p>
       {

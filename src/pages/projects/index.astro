@@ -3,10 +3,8 @@ import ProjectCard from "../../components/ProjectCard.astro";
 import Container from "../../layouts/Container.astro";
 import Content from "../../layouts/Content.astro";
 
-import { projects } from "../../data";
+import { projects } from "../../consts/data.ts";
 
-const username = "charlysoledad";
-const password = "2804$0l3Ju4n.";
 const token = process.env.TOKEN;
 const headers = {
   Authorization: `token ${token}`,
@@ -18,33 +16,17 @@ const repositories = await fetch(
     headers: headers,
   },
 ).then(async (response) => response.json());
-// .then(async (data) => {
-//   const processed = await data.map(
-//     async (value: { languages_url: string | URL | Request }) => {
-//       const languages = await fetch(value.languages_url, {
-//         headers: headers,
-//       })
-//         .then(async (resp) => await resp.json())
-//         .then((val) => Object.keys(val));
-
-//       return { ...value, languages };
-//     },
-//   );
-//   return processed;
-// });
-
-console.log(repositories);
 ---
 
 <Container title="Projects" navbarFixed={true}>
   <main class="w-full">
     <Content>
-      <h1 class="text-3xl text-white text-center mb-4">Projects</h1>
+      <h1 class="text-3xl text-white text-center mb-4">Proyectos</h1>
       <div class="grid lg:grid-cols-2 gap-y-8 justify-center">
         {
           projects.map((project) => (
             <ProjectCard
-              image={`/src/assets/projects/${project.image}`}
+              image={`/assets/projects/${project.image}`}
               title={project.name}
               description={project.description}
             />
@@ -53,7 +35,7 @@ console.log(repositories);
       </div>
     </Content>
     <Content>
-      <h1 class="text-3xl text-white text-center mb-4">Repositories</h1>
+      <h1 class="text-3xl text-white text-center mb-4">Repositorios</h1>
       <div class="grid lg:grid-cols-4 gap-y-8 gap-x-4 justify-center">
         {
           repositories.map(
@@ -103,3 +85,4 @@ console.log(repositories);
     </Content>
   </main>
 </Container>
+../../consts/data

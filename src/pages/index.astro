@@ -6,24 +6,59 @@ import Container from "../layouts/Container.astro";
 import Experience from "../components/Experience.astro";
 import Timeline from "../components/Timeline.astro";
 
-import { curriculum, skills } from "../data";
+import { curriculum, skills } from "../consts/data";
 import Content from "../layouts/Content.astro";
 ---
 
 <Container title="Home" navbarFixed={false}>
-	<main class="relative min-h-[920px]: mx-auto w-full h-full">
+	<main
+		class="relative min-h-[920px]: mx-auto w-full h-full dark:text-white text-white"
+	>
 		<Hero />
 		<Content id="about" class="">
 			<h1
-				class="text-[#769EAD] text-3xl text-center border-b-[1px] border-b-[#769EAD] pb-2"
+				class="uppercase text-[#769EAD] text-3xl text-center border-b-[1px] border-b-[#769EAD] pb-2"
 			>
-				AQUI VA EL ABOUT
+				Acerca de mi
 			</h1>
-			<p class="text-white">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-				assumenda ea et doloremque nulla dolorum molestias! Porro sapiente iure
-				perferendis quibusdam, explicabo deleniti cumque obcaecati incidunt ut
-				quasi minus modi?
+			<p class="text-white text-justify pt-3 px-6 xl:px-0">
+				Mi nombre es Juan Carlos Soledad Ramírez nací el 28 de abril del 2001 en
+				Gómez Palacio, Durango, desde los 6 años he tenido la oportunidad de
+				participar en distintas competiciones comenzando en el deporte con
+				equipos regionales, compitiendo en torneos locales, estatales y
+				nacionales en soccer representando al municipio de Gómez Palacio y al
+				estado de Durango y en ajedrez en competencias regionales, gracias a
+				ello he desarrollado varias aptitudes (líderazgo, habilidades motrices,
+				razonamiento abstracto y conocimiento social), así como también valores
+				(responsabilidad, disciplina, constancia, desafío, pasividad, madurez,
+				lealtad, perseverancia, entre otros), todo ello gracias al convivir con
+				diferentes tipos de j&oacute;venes. <br />
+				<br /> Considero que mi manera de ayudar, socializar, aprender y crecer es
+				bastante amplia.
+				<!-- <br /><br /> Además otra aptitud que me caracteriza es la de ser autodidacta
+				ya que desde mi niñez me ha gustado saber el porqué de las cosas, desde temprana
+				edad mi curiosidad por la tecnología ha ido aumentando, siendo así que desde
+				los 15 años he estado involucrado en proyectos de robótica y en desarrollo
+				de software, participando en organizaciones como FIRST, donde forme parte
+				del equipo de mi Bachillerato en el área de programación, destacando de esta
+				participación el llegar a ser capitán y obtener reconocimientos nacionales
+				e internacionales, además fui encargado del diseño mecánico, electrónico,
+				neumático, entre los proyectos de desarrollo están: un sistema de control
+				para competencias(incluyendo transmisión de video, control de puntajes, rankings
+				de los equipos), un sistema de control para una academia de robótica(control
+				de alumnos, proceso de pagos, paso de asistencia, matriculación de alumnos
+				a clases), el proyecto CASN(Control de Acceso/Salida y Notificación) con
+				el cual participé en Expo-ciencias Durango 2017 y Prototipos 2018. <br
+				/><br /> Por otra parte, en VEX Robotics Competitions participé como mentor
+				de equipos de primaria obteniendo también distintos reconocimientos. Continuando
+				con participaciones sobre ciencia y tecnología, represente a mi bachillerato
+				en concursos de Prototipos Tecnológicos en la categoría de software y Expo-ciencias
+				dentro de la misma rama. El ser autodidacta me ha llevado a aprender alrededor
+				de 10 lenguajes de programación durante los últimos 3 años. Y el impartir
+				cursos de programación y Robótica en una Academia particular, asesorando
+				también a equipos de FRIST en el área de programación y mecánica utilizando
+				Solidworks, a su vez, desarrollar proyectos personales sobre sitios web,
+				visión artificial y software. -->
 			</p>
 		</Content>
 		<Content class="bg-[#080D16] w-full text-center">
@@ -31,10 +66,10 @@ import Content from "../layouts/Content.astro";
 				<h2
 					class="text-4xl text-center uppercase text-[#769EAD] border-b-[1px] border-b-[#769EAD] pb-2"
 				>
-					Skills
+					Herramientas
 				</h2>
 				<div
-					class="icons py-8 grid grid-flow-row lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 lg:justify-between sm:justify-normal justify-items-center gap-y-10 w-full"
+					class="icons py-8 grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:justify-between sm:justify-normal justify-items-center gap-y-10 w-full"
 				>
 					{
 						skills.map((skill) => (
@@ -49,7 +84,7 @@ import Content from "../layouts/Content.astro";
 		<GallerySection />
 		<Content class="flex w-full bg-[#080D16]">
 			<div class="max-w-7xl mx-auto lg:flex md:flex sm:block">
-				<Timeline title="Work Experience">
+				<Timeline title="Experiencia Laboral">
 					<svg
 						slot="icon"
 						class="size-8 text-[#769EAD]"
@@ -80,7 +115,7 @@ import Content from "../layouts/Content.astro";
 						))
 					}
 				</Timeline>
-				<Timeline title="Scolarship">
+				<Timeline title="Escolaridad">
 					<Icon
 						slot="icon"
 						name="mingcute:school-line"
@@ -103,3 +138,4 @@ import Content from "../layouts/Content.astro";
 		</Content>
 	</main>
 </Container>
+../consts/data

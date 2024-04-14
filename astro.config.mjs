@@ -8,7 +8,9 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   output: 'server',
   integrations: [tailwind(), icon()],
-  adapter: vercel(),
+  adapter: vercel({
+    // imageService: true,
+  }),
   image: {
     domains: ["astro.build"],
     remotePatterns: [{

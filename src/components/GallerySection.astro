@@ -1,25 +1,8 @@
 ---
-const images = Object.values(
-  import.meta.glob<string>("/src/assets/gallery/*.{jpeg,jpg,png,gif}", {
-    eager: true,
-    query: "url",
-    import: "default",
-  }),
-);
-
-if (!images) throw new Error("No images loaded");
-const valuedImages = images.map((img) => {
-  const _id = img.replace("/src/assets/gallery/", "");
-  const id = _id.replace(".jpg", "");
-
-  return {
-    src: img,
-    route: `/gallery/photo/${id}`,
-  };
-});
+import { gallerySection } from "src/consts/gallery";
 ---
 
-<section id="gall" class="w-full relative isolate group overflow-hidden">
+<section id="gallery" class="w-full relative isolate group overflow-hidden">
   <div
     class="w-full h-full bg-black/[0.6] content-center absolute group-hover:-translate-y-full transition duration-[1500ms]"
   >
@@ -32,21 +15,22 @@ const valuedImages = images.map((img) => {
     </h1>
   </div>
   <div
-    class="-z-10 w-full grid grid-flow-dense lg:grid-rows-3 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 items-center"
+    class="-z-10 w-full grid grid-flow-dense grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center"
   >
     {
-      valuedImages.map((photo, index) => {
+      gallerySection.map((photo, index) => {
         return (
           <a
-            href={photo.route}
-            class="max-h-[180px] h-full w-full flex items-center justify-center overflow-clip transition-all duration-1000"
+            href={`/gallery/photo/${photo.id}`}
+            class="max-h-[180px] h-full w-full overflow-clip transition-all duration-1000"
           >
-            <figure class=" w-full hover:m-3 ">
+            <figure class="h-full w-full ">
               <img
+                loading="lazy"
                 decoding="async"
-                src={photo.src}
-                alt={photo.route}
-                class=" hover:scale-150 transition-all duration-500"
+                src={photo.url}
+                alt={photo.alt}
+                class="w-full h-full object-cover hover:scale-150 transition-all duration-500"
               />
             </figure>
           </a>

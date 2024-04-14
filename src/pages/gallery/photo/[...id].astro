@@ -1,93 +1,80 @@
 ---
-import type { ImageMetadata } from "astro";
 import "../../../css/transitions.css";
 import Container from "../../../layouts/Container.astro";
 import Content from "../../../layouts/Content.astro";
-import { Image } from "astro:assets";
-
-export const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/gallery/*.{jpeg,jpg,png,gif}",
-);
+import { gallerySection } from "src/assets/gallery/gallery";
 
 export const getStaticPaths = async () => {
-  const imgKeys = Object.keys(images);
-  const imgsIds = imgKeys.map((key) =>
-    key.replace("/src/assets/gallery/", "").replace(".jpg", ""),
-  );
-
-  return imgsIds.map((id) => ({ params: { id: id } }));
+  const imgKeys = gallerySection.map((photo) => photo.id);
+  return imgKeys.map((id) => ({ params: { id: id } }));
 };
+
+interface Props {
+  id: number;
+}
 
 const { id } = Astro.params;
 
-const path = `/src/assets/gallery/${id}.jpg`;
-if (!images[path]) throw new Error("No images loaded");
+const photo = gallerySection.find((photo) => photo.id == id);
+const photoIndex = gallerySection.findIndex((photo) => photo.id == id) + 1;
 
-// const photo = gallerySection.find((photo) => photo.id == id);
-// const photoIndex = gallerySection.findIndex((photo) => photo.id == id);
-// const photoNumber = photo?.id.toString().padStart(2, "0");
+const prevPhoto = gallerySection.find((photo) => photo.id == photoIndex - 1);
+const nextPhoto = gallerySection.find((photo) => photo.id == photoIndex + 1);
 
-const prevPhoto = `/src/assets/gallery/${parseInt(id) - 1}.jpg`;
-// if (!images[prevPhoto]) throw new Error("No prev loaded");
-const nextPhoto = `/src/assets/gallery/${parseInt(id) + 1}.jpg`;
-// if (!images[nextPhoto]) throw new Error("No next loaded");
 export const prerender = true;
 ---
 
 <Container title="Gallery" navbarFixed={true}>
   <main class="relative mx-auto w-full h-full">
     <Content>
-      <div class="flex flex-col gap-y-8 items-center justify-center">
-        <Image
+      <div
+        class="mx-auto flex flex-col gap-y-8 items-center justify-center object-contain w-4/5 md:w-8/12"
+      >
+        <img
           decoding="async"
-          src={images[path]()}
+          src={photo?.url}
           alt=""
-          class="max-w-[920px] max-h-[540px] w-3/5"
+          class="md:max-h-[540px] rounded-xl shadow-lg shadow-black/40"
           transition:name={`photo-${id}`}
         />
-
-        <!-- <img
-          decoding="async"
-          src={import(images[imagePath])}
-          alt={photo?.alt}
-          
-        /> -->
         <div class="flex flex-row gap-x-3 items-center justify-center">
           {
-            images[prevPhoto] && (
+            photoIndex - 1 > 0 && (
               <a
-                href={`/gallery/photo/${parseInt(id) - 1}`}
-                class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center"
+                href={`/gallery/photo/${photoIndex - 1}`}
+                class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center hover:shadow-lg hover:shadow-black/55"
               >
-                <Image
-                  class="place-self-center hover:scale-150 transition-all duration-500"
-                  src={images[prevPhoto]()}
+                <img
+                  class="place-self-center hover:scale-125 transition-all duration-500"
+                  src={prevPhoto?.url}
+                  height={240}
                   alt=""
                   loading={
-                    parseInt(id) - 1 && parseInt(id) - 1 > 8 ? "lazy" : "eager"
+                    photoIndex - 1 && photoIndex - 1 > 8 ? "lazy" : "eager"
                   }
                   fetchpriority={
-                    parseInt(id) - 1 && parseInt(id) - 1 <= 4 ? "high" : "auto"
+                    photoIndex - 1 && photoIndex - 1 <= 4 ? "high" : "auto"
                   }
                 />
               </a>
             )
           }
           {
-            images[nextPhoto] && (
+            photoIndex + 1 < gallerySection.length && (
               <a
-                href={`/gallery/photo/${parseInt(id) + 1}`}
-                class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center"
+                href={`/gallery/photo/${photoIndex + 1}`}
+                class="w-1/6 h-20 flex overflow-clip rounded-lg transition-all duration-1000 items-center justify-center hover:shadow-lg hover:shadow-black/55"
               >
-                <Image
-                  class="place-self-center hover:scale-150 transition-all duration-500"
-                  src={images[nextPhoto]()}
-                  alt={""}
+                <img
+                  class="place-self-center hover:scale-125 transition-all duration-500"
+                  src={nextPhoto?.url}
+                  height={240}
+                  alt=""
                   loading={
-                    parseInt(id) + 1 && parseInt(id) + 1 > 8 ? "lazy" : "eager"
+                    photoIndex + 1 && photoIndex + 1 > 8 ? "lazy" : "eager"
                   }
                   fetchpriority={
-                    parseInt(id) + 1 && parseInt(id) + 1 <= 4 ? "high" : "auto"
+                    photoIndex + 1 && photoIndex + 1 <= 4 ? "high" : "auto"
                   }
                 />
               </a>

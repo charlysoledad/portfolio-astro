@@ -24,6 +24,8 @@
     "@iconify-json/solar": "^1.1.9",
     "@iconify-json/streamline": "^1.1.8",
     "@iconify-json/vscode-icons": "^1.1.33",
+    "animate.css": "^4.1.1",
+    "aos": "^3.0.0-beta.6",
     "astro": "^4.5.12",
     "astro-icon": "^1.1.0",
     "astro-navbar": "^2.3.1",

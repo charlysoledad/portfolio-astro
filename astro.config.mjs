@@ -9,13 +9,12 @@ export default defineConfig({
   output: 'server',
   integrations: [tailwind(), icon()],
   adapter: vercel({
-    imageService: true,
-    devImageService: 'squoosh',
+    // imageService: true,
   }),
-  // image: {
-  //   domains: ["astro.build"],
-  //   remotePatterns: [{
-  //     protocol: "https"
-  //   }]
-  // }
+  image: {
+    domains: ["astro.build"],
+    remotePatterns: [{
+      protocol: "https"
+    }]
+  }
 });

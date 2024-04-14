@@ -238,26 +238,26 @@ export const projects = [
   {
     name: 'CASN - Control Acceso y Notificacion',
     image: 'casn.png',
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis velit vero quo corporis, nostrum ullam ratione quibusdam quisquam in. Quos vero rerum sapiente a voluptate eius quia, similique hic ipsum."
+    description: "Sistema de Contro para acceso a una instalacion por medio de biometria dactilar."
   },
   {
     name: 'E-Learning Robotics platform',
     image: 'casn.png',
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis velit vero quo corporis, nostrum ullam ratione quibusdam quisquam in. Quos vero rerum sapiente a voluptate eius quia, similique hic ipsum."
+    description: "Plataforma de aprendizaje para robotica por medio de LEGO Ev3."
   },
   {
     name: 'Host Server Template',
     image: 'casn.png',
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis velit vero quo corporis, nostrum ullam ratione quibusdam quisquam in. Quos vero rerum sapiente a voluptate eius quia, similique hic ipsum."
+    description: "Plantilla disenada para utilizarse en WampServer para un mejor control de archivos."
   },
   {
     name: 'RadioClinic',
     image: 'casn.png',
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis velit vero quo corporis, nostrum ullam ratione quibusdam quisquam in. Quos vero rerum sapiente a voluptate eius quia, similique hic ipsum."
+    description: "Sistema de gestion radiologico, para organizacion y distribucion de consultas a diferentes clientes mapeados por zonas."
   },
   {
     name: 'SEI Website',
     image: 'casn.png',
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis velit vero quo corporis, nostrum ullam ratione quibusdam quisquam in. Quos vero rerum sapiente a voluptate eius quia, similique hic ipsum."
+    description: "Sitio web para un distribuidor de consumibles electricos."
   },
 ]

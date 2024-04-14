@@ -1,8 +1,8 @@
 ---
 import "@fontsource/arima-madurai";
-
 import "../css/global.css";
 import { ViewTransitions } from "astro:transitions";
+import "animate.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
@@ -19,18 +19,21 @@ const { title, navbarFixed = false } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <ViewTransitions />
-    <!-- <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-      if (
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script> -->
+    <script>
+      import AOS from "aos";
+      import "aos/dist/aos.css";
+      AOS.init({
+        // Global settings:
+        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+        startEvent: "astro:page-load", // name of the event dispatched on the document, that AOS should initialize on
+        initClassName: "aos-init", // class applied after initialization
+        animatedClassName: "aos-animate", // class applied on animation
+        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+      });
+    </script>
     <script src="../scripts/theming"></script>
   </head>
   <body

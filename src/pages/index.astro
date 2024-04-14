@@ -15,13 +15,23 @@ import Content from "../layouts/Content.astro";
 		class="relative min-h-[920px]: mx-auto w-full h-full dark:text-white text-white"
 	>
 		<Hero />
-		<Content id="about" class="">
+		<Content id="about">
 			<h1
-				class="uppercase text-[#769EAD] text-3xl text-center border-b-[1px] border-b-[#769EAD] pb-2"
+				data-aos="fade-in"
+				data-aos-duration="500"
+				data-aos-easing="ease-in-out"
+				class="about-title uppercase text-[#769EAD] text-3xl text-center border-b-[1px] border-b-[#769EAD] pb-2"
 			>
 				Acerca de mi
 			</h1>
-			<p class="text-white text-justify pt-3 px-6 xl:px-0">
+			<p
+				data-aos="fade-in"
+				data-aos-delay="250"
+				data-aos-duration="500"
+				data-aos-easing="ease-in-out"
+				data-aos-anchor=".about-title"
+				class="about-text text-white text-justify pt-3 px-6 xl:px-0"
+			>
 				Mi nombre es Juan Carlos Soledad Ramírez nací el 28 de abril del 2001 en
 				Gómez Palacio, Durango, desde los 6 años he tenido la oportunidad de
 				participar en distintas competiciones comenzando en el deporte con
@@ -64,7 +74,11 @@ import Content from "../layouts/Content.astro";
 		<Content class="bg-[#080D16] w-full text-center">
 			<div class="content max-w-7xl mx-auto w-full">
 				<h2
-					class="text-4xl text-center uppercase text-[#769EAD] border-b-[1px] border-b-[#769EAD] pb-2"
+					data-aos="fade-in"
+					data-aos-delay="250"
+					data-aos-duration="1000"
+					data-aos-easing="ease-in-out"
+					class="text-4xl text-center uppercase text-[#769EAD] border-b-[1px] border-b-[#769EAD] pb-2 animate__animated animate__zoomIn"
 				>
 					Herramientas
 				</h2>
@@ -72,11 +86,21 @@ import Content from "../layouts/Content.astro";
 					class="icons py-8 grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:justify-between sm:justify-normal justify-items-center gap-y-10 w-full"
 				>
 					{
-						skills.map((skill) => (
-							<a href={skill.site} target="_blank">
-								<Icon name={skill.icon} class="text-4xl text-white" />
-							</a>
-						))
+						skills.map((skill, index) => {
+							const timeBase = 10;
+							return (
+								<a
+									data-aos="fade-in"
+									data-aos-delay={timeBase * index}
+									data-aos-duration="800"
+									data-aos-easing="ease-in-out"
+									href={skill.site}
+									target="_blank"
+								>
+									<Icon name={skill.icon} class="text-4xl text-white" />
+								</a>
+							);
+						})
 					}
 				</div>
 			</div>

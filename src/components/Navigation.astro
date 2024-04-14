@@ -1,22 +1,17 @@
 ---
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { Icon } from "astro-icon/components";
-
-interface Props {
-  imageUrl?: string;
-}
-
-const {
-  imageUrl = "https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png",
-} = Astro.props;
 ---
 
 <div
-  class="max-w-7xl w-full mx-auto flex flex-col lg:flex-row justify-between align-middle items-center py-2 px-4 lg:px-0"
+  class="h-16 lg:h-full max-w-7xl w-full mx-auto flex flex-col lg:flex-row justify-between items-center lg:py-0 py-4 px-4 lg:px-0 animate__animated animate__fadeInDown"
 >
   <Astronav closeOnClick>
     <div class="flex w-full justify-between">
-      <a href="/" class="flex flex-shrink-0 items-center">
+      <a
+        href="/"
+        class="flex flex-shrink-0 items-center animate__animated animate__fadeInLeft"
+      >
         <Icon name="j" />
         <h1 class="text-xl ml-4 text-white">Juan Soledad</h1>
       </a>
@@ -33,7 +28,7 @@ const {
         <li>
           <a
             href="/projects/"
-            class="block content-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+            class="block content-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium animate__animated animate__fadeInRight"
             >Proyectos</a
           >
         </li>
@@ -41,7 +36,7 @@ const {
           <a
             href="https://github.com/charlysoledad"
             target="_blank"
-            class="block content-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-full"
+            class="block content-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium w-full animate__animated animate__fadeInRight"
             ><Icon
               name="mingcute:github-line"
               class="text-2xl hidden lg:block"
@@ -53,7 +48,7 @@ const {
           <a
             href="https://www.linkedin.com/in/juan-carlos-soledad-ramirez/"
             target="_blank"
-            class="block content-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+            class="block content-center text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium animate__animated animate__fadeInRight"
           >
             <Icon name="streamline:linkedin" class="text-2xl hidden lg:block" />
             <span class="block lg:hidden">LinkedIn</span>
@@ -63,7 +58,7 @@ const {
           <button
             id="theme-toggle"
             type="button"
-            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 animate__animated animate__fadeInRight"
           >
             <svg
               id="theme-toggle-dark-icon"

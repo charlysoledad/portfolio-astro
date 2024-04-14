@@ -19,10 +19,16 @@ import { gallerySection } from "src/consts/gallery";
   >
     {
       gallerySection.map((photo, index) => {
+        const timeBase = 250;
         return (
           <a
+            data-aos="fade-in"
+            data-aos-delay={timeBase * index}
+            data-aos-duration="500"
+            data-aos-easing="ease-in-out"
+            data-aos-anchor=".photo"
             href={`/gallery/photo/${photo.id}`}
-            class="max-h-[180px] h-full w-full overflow-clip transition-all duration-1000"
+            class="photo max-h-[180px] h-full w-full overflow-clip transition-all duration-1000"
           >
             <figure class="h-full w-full ">
               <img

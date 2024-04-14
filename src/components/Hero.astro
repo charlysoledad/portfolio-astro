@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Content from "../layouts/Content.astro";
+import { fade, slide } from "astro:transitions";
 ---
 
 <section
@@ -8,25 +9,27 @@ import Content from "../layouts/Content.astro";
   class="h-full min-h-screen relative w-full mx-auto pt-72 pb-96 isolate transition-all duration-500"
 >
   <div class="max-w-7xl mx-auto px-8 xl:px-0">
-    <h1 class="text-7xl uppercase font-bold text-white tracking-widest">
+    <h1
+      class="text-7xl uppercase font-bold text-white tracking-widest animate__animated animate__backInLeft"
+    >
       Hello
     </h1>
-    <p class="text-white">------------- welcome to myself.</p>
+    <p class="text-white animate__animated animate__backInLeft">
+      ------------- welcome to myself.
+    </p>
   </div>
-  <div class="w-full absolute bottom-0 h-fit">
+  <div
+    class="w-full absolute bottom-0 h-fit animate__animated animate__backInUp"
+  >
     <img
       src="/assets/pattern-triangle.svg"
       alt="background"
       class="absolute bottom-0 z-0 xl:h-auto h-48 xl:w-full object-cover"
     />
-
-    <!-- <img
-        src="/assets/pattern-triangle.svg"
-        alt="background"
-        class="right-auto left-auto transform -scale-x-100 absolute bottom-0 w-full opacity-80"
-        /> -->
   </div>
-  <div class="w-full flex justify-center items-center absolute bottom-0 pb-8">
+  <div
+    class="w-full flex justify-center items-center absolute bottom-0 pb-8 animate__animated animate__backInUp"
+  >
     <a
       href="#about"
       class="text-5xl text-white/[.5] dark:text-white/[.5] hover:text-white hover:dark:text-white"

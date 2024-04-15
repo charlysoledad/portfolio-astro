@@ -8,6 +8,7 @@ import Timeline from "../components/Timeline.astro";
 
 import { curriculum, skills } from "../consts/data";
 import Content from "../layouts/Content.astro";
+import Card from "src/components/Card.astro";
 ---
 
 <Container title="Home" navbarFixed={false}>
@@ -158,6 +159,22 @@ import Content from "../layouts/Content.astro";
 						))
 					}
 				</Timeline>
+			</div>
+		</Content>
+		<Content class="flex w-full bg-[#080D16]">
+			<div class="content max-w-7xl mx-auto w-full">
+				<h2
+					data-aos="fade-in"
+					data-aos-delay="250"
+					data-aos-duration="1000"
+					data-aos-easing="ease-in-out"
+					class="text-4xl text-center uppercase text-[#769EAD] border-b-[1px] border-b-[#769EAD] pb-2 animate__animated animate__zoomIn"
+				>
+					Entrevistas
+				</h2>
+				<div class="grid grid-flow-row grid-cols-3 mt-3">
+					<Card />
+				</div>
 			</div>
 		</Content>
 	</main>

@@ -2,7 +2,10 @@
 import { gallerySection } from "src/consts/gallery";
 ---
 
-<section id="gallery" class="w-full relative isolate group overflow-hidden">
+<section
+  id="gallery"
+  class="w-full relative isolate group overflow-hidden border-y-2 border-[#769EAD] py-2 bg-[#080D16]"
+>
   <div
     class="w-full h-full bg-black/[0.6] content-center absolute group-hover:-translate-y-full transition duration-[1500ms]"
   >
@@ -20,6 +23,8 @@ import { gallerySection } from "src/consts/gallery";
     {
       gallerySection.map((photo, index) => {
         const timeBase = 250;
+        console.log(timeBase * index);
+
         return (
           <a
             data-aos="fade-in"
@@ -33,7 +38,6 @@ import { gallerySection } from "src/consts/gallery";
             <figure class="h-full w-full ">
               <img
                 loading="lazy"
-                decoding="async"
                 src={photo.url}
                 alt={photo.alt}
                 class="w-full h-full object-cover hover:scale-150 transition-all duration-500"

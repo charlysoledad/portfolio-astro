@@ -108,7 +108,7 @@ import Card from "src/components/Card.astro";
 		</Content>
 		<GallerySection />
 		<Content class="flex w-full bg-[#080D16]">
-			<div class="max-w-7xl mx-auto lg:flex md:flex sm:block">
+			<div class="max-w-7xl mx-auto lg:flex md:flex sm:block relative">
 				<Timeline title="Experiencia Laboral">
 					<svg
 						slot="icon"
@@ -162,7 +162,7 @@ import Card from "src/components/Card.astro";
 			</div>
 		</Content>
 		<Content class="flex w-full bg-[#080D16]">
-			<div class="content max-w-7xl mx-auto w-full">
+			<div class="content max-w-7xl mx-auto w-full flex flex-col">
 				<h2
 					data-aos="fade-in"
 					data-aos-delay="250"
@@ -172,7 +172,9 @@ import Card from "src/components/Card.astro";
 				>
 					Entrevistas
 				</h2>
-				<div class="grid grid-flow-row grid-cols-3 mt-3">
+				<div
+					class="px-4 xl:px-0 grid justify-items-center mt-3 gap-3 md:grid-cols-2 lg:grid-cols-4"
+				>
 					<Card />
 				</div>
 			</div>

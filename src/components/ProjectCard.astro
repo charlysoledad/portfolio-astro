@@ -11,12 +11,12 @@ const { image, title, description } = Astro.props;
 <a
   href="#"
   aria-posinset="none"
-  class="flex flex-col items-center border border-gray-700 rounded-lg shadow md:flex-row w-11/12 md:max-w-full hover:bg-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 bg-gray-800 mx-auto"
+  class="flex flex-col items-center md:flex-row w-11/12 md:max-w-full mx-auto rounded-lg shadow border border-[#769EAD] bg-[#0b121f] hover:bg-[#1c2330]"
 >
   <img
     class="object-cover w-full rounded-t-lg h-32 md:h-full md:w-48 md:rounded-none md:rounded-s-lg"
     src={image}
-    alt=""
+    alt={title}
   />
   <div class="flex flex-col justify-between p-4 leading-normal">
     <h5

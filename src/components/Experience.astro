@@ -11,7 +11,7 @@ interface Props {
 const { title, site, time, description, projects, tasks = [] } = Astro.props;
 ---
 
-<li>
+<li class="relative">
   <div
     class="relative mx-12 pb-12 before:absolute before:left-[-32px] before:block before:h-full before:border-l-[2.5px] before:border-[#769EAD] before:content-['']"
   >
@@ -20,7 +20,7 @@ const { title, site, time, description, projects, tasks = [] } = Astro.props;
         data-aos="slide-right"
         data-aos-delay="50"
         data-aos-duration="1000"
-        class="relative lg:block md:block sm:sticky lg:top-[72px] md:top-[72px] sm:top-[72px] bg-[#080D16]"
+        class="relative z-10 lg:block md:block sm:sticky lg:top-[72px] md:top-[72px] sm:top-[72px] bg-[#080D16]"
       >
         <span
           class="text-[#769EAD] bg-[#080D16] -left-[44px] absolute content-center rotate-90"

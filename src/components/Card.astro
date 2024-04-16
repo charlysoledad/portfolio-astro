@@ -1,14 +1,17 @@
 ---
 import { Icon } from "astro-icon/components";
+
+const img_url =
+  "https://images.milenio.com/_03IdE9BpriQn9iEAC62eEze_H4=/942x532/uploads/media/2023/04/11/juan-carlos-soledad-ramirez-estudiante_0_0_1198_745.jpg";
+const post_url =
+  "https://www.milenio.com/aula/first-y-los-beneficios-al-desarrollo-profesional-de-los-jovenes";
 ---
 
-<div class="max-w-sm rounded-lg shadow border border-[#769EAD] bg-[#0b121f]">
-  <a href="#" class="relative">
-    <img
-      class="rounded-t-lg"
-      src="https://images.milenio.com/_03IdE9BpriQn9iEAC62eEze_H4=/942x532/uploads/media/2023/04/11/juan-carlos-soledad-ramirez-estudiante_0_0_1198_745.jpg"
-      alt=""
-    />
+<div
+  class="block max-w-sm w-full h-fit rounded-lg shadow border border-[#769EAD] bg-[#0b121f]"
+>
+  <a href={post_url} class="relative">
+    <img class="rounded-t-lg" src={img_url} alt="" />
     <span
       class="badge absolute bottom-1 right-1 px-2 py-1 bg-[rgba(176,1,36,1)] rounded-md text-[12px]"
     >
@@ -16,9 +19,7 @@ import { Icon } from "astro-icon/components";
     </span>
   </a>
   <div class="p-5">
-    <a
-      href="https://www.milenio.com/aula/first-y-los-beneficios-al-desarrollo-profesional-de-los-jovenes"
-    >
+    <a href={post_url}>
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
         Gracias a First desarrolló su proyecto de vida profesional
       </h5>
@@ -30,7 +31,7 @@ import { Icon } from "astro-icon/components";
     </p>
     <a
       target="_blank"
-      href="https://www.milenio.com/aula/first-y-los-beneficios-al-desarrollo-profesional-de-los-jovenes"
+      href={post_url}
       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#769EAD] rounded-lg hover:bg-[#587985] focus:ring-4 focus:outline-none focus:ring-blue-300"
     >
       Leer m&aacute;s
